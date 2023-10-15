@@ -8,23 +8,19 @@ public class ZeroOneTwoSort {
 		System.out.println("Enter the size of the array: ");
 	    int length = sc.nextInt();
 	    
-	    int[] array = new int[length];
-	    
-	    int zeroCount = 0;
-	    int oneCount = 0;
-	    int twoCount = 0;
+	    int[] countArray = new int[3];
 	    
 	    System.out.println( " Enter the elements of the array ( 0, 1, 2 ): ");
 	    for( int i = 0; i < length; i++ ) {
-	        array[i] = sc.nextInt();
-	        if( array[i] == 0 ) {
-	            zeroCount++;
+			int val = sc.nextInt();
+	        if( val == 0 ) {
+	            countArray[0]++;
 	        }
-	        else if( array[i] == 1 ) {
-	            oneCount++;
+	        else if( val == 1 ) {
+	            countArray[1]++;
 	        }
-	        else if( array[i] == 2 ) {
-	            twoCount++;
+	        else if( val == 2 ) {
+	            countArray[2]++;
 	        }
 	        else {
 	            System.out.println( " YOU HAVE ENTERED A NUMBER OTHER THAN 0 OR 1 OR 2 !!!!!! \n PLEASE CHECK YOUR INPUT !!!!!!! " );
@@ -34,15 +30,11 @@ public class ZeroOneTwoSort {
 	    }
 		
 	    System.out.println( "The Sorted Elements are......... " );
-	    for( int i = 0; i < zeroCount; i++) {
-			System.out.print("0 ");
-	    }
-	    for( int i = 0; i < oneCount; i++ ) {
-			System.out.print("1 ");
-	    }
-	    for( int i = 0; i < twoCount; i++ ) {
-			System.out.print("2 ");
-	    }
+	    for( int i = 0; i < countArray.length; i++) {
+			for( int j = 0; j < countArray[i]; j++) {
+				System.out.print(i + " ");
+			}
+		}
 		
 		sc.close();
 		
