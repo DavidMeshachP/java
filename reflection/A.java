@@ -9,5 +9,9 @@ public class A {
 
     }
 
+    @Welcome
+    public void hi ( @Name String hiName ) {
+
+    }
     
 }

@@ -16,4 +16,10 @@ public class B {
     public void multiply( int a, int b, int c) {
         
     }
+
+    @Welcome
+    public void Hello ( @Name String helloName ) {
+
+    }
+
 }
