@@ -3,6 +3,7 @@ package reflection;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Arrays;
 
 public class DisplayingMethodAndClassNamesUsingReflection {
     public static void main(String args[]) throws Exception {
@@ -36,8 +37,10 @@ public class DisplayingMethodAndClassNamesUsingReflection {
                     Method[] methodsB = c[j].getDeclaredMethods();
                     for(Method method2 : methodsB) {
                         if((method.getName()).equals(method2.getName()) && !(uniqueMethods.contains(method))) {
-                            uniqueMethods.add(method);
-                            System.out.println(" Method Name : " + method);
+                            if ( checkParameters(method,method2) ) {
+                                System.out.println(" Method Name : " + method);
+                                uniqueMethods.add(method);
+                            }
                         }
                     }
                 }
@@ -45,4 +48,14 @@ public class DisplayingMethodAndClassNamesUsingReflection {
         }
 
     }
+
+    public static boolean checkParameters(Method method, Method method2 ) {
+
+        if( Arrays.equals( method.getParameterTypes(), method2.getParameterTypes() )) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
