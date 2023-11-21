@@ -9,7 +9,7 @@ public class A {
 
     }
 
-    @Welcome
+    @Welcome( methodName = "hello" )
     public void hi ( @Name String hiName ) {
 
     }

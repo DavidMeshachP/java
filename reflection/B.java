@@ -17,8 +17,8 @@ public class B {
         
     }
 
-    @Welcome
-    public void Hello ( @Name String helloName ) {
+    @Welcome( methodName = "hi" )
+    public void hello ( @Name String helloName ) {
 
     }
 
