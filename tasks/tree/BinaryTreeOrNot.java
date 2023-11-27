@@ -1,4 +1,4 @@
-package treebasics;
+package tree;
 
 import java.util.Scanner;
 
