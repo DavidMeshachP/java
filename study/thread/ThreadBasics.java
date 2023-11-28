@@ -40,6 +40,14 @@ public class ThreadBasics extends Thread {
             System.out.println(threadBasics.getName() + " is dead");
         }
         oddAndEvenThread();
+        ThreadBasicsTwo threadBasicsTwo = new ThreadBasicsTwo();
+        Thread threadBasicsTwoThread = new Thread(threadBasicsTwo);
+        threadBasicsTwoThread.start();
+        try {
+            threadBasicsTwoThread.join();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
     }
 
@@ -83,6 +91,16 @@ public class ThreadBasics extends Thread {
 
         oddThread.start();
         evenThread.start();
+    }
+
+}
+
+class ThreadBasicsTwo implements Runnable {
+
+    public void run() {
+
+        System.out.println("this is a thread which is run by a class which has implemented runnable interface ");
+
     }
 
 }
