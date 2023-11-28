@@ -4,9 +4,14 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilterInputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.SequenceInputStream;
 import java.util.Enumeration;
 import java.util.Vector;
@@ -21,6 +26,7 @@ public class IoBasics {
 
         // system.in. (ASCII code of 1st character)
         try {
+            System.out.println("enter more than one character...");
             System.out.println(" system.in.read() " + (char) System.in.read());
         } catch (IOException e) {
             System.out.println(" error " + e);
@@ -39,6 +45,10 @@ public class IoBasics {
         sequenceInputStreamReadDataUsingEnumeration();
         byteArrayOutputStream();
         byteArrayInputStream();
+        dataOutputStream();
+        dataInputStream();
+        filterOutputStream();
+        filterInputStream();
 
     }
 
@@ -202,9 +212,9 @@ public class IoBasics {
     public static void byteArrayInputStream() {
         try {
             FileInputStream fis = new FileInputStream("C:/Users/david/Downloads/fileoutputstringtestout.txt");
-            byte[] byteArr = new byte[(int)fis.available()];
+            byte[] byteArr = new byte[(int) fis.available()];
             fis.read(byteArr);
-            ByteArrayInputStream byt = new ByteArrayInputStream( byteArr );
+            ByteArrayInputStream byt = new ByteArrayInputStream(byteArr);
             int k = 0;
             System.out.println("byte array input stream ..............");
             while ((k = byt.read()) != -1) {
@@ -213,6 +223,77 @@ public class IoBasics {
             }
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public static void dataOutputStream() {
+        try {
+
+            FileOutputStream fout = new FileOutputStream("C:/Users/david/Downloads/dataoutputstreamtestout.txt");
+            DataOutputStream data = new DataOutputStream(fout);
+            data.writeInt(65);
+            data.writeInt(70);
+            data.writeInt(75);
+            data.writeInt(66);
+            data.flush();
+            data.close();
+            System.out.println("success......dataoutputstream......................");
+
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+    }
+
+    public static void dataInputStream() {
+        try {
+
+            InputStream input = new FileInputStream("C:/Users/david/Downloads/dataoutputstreamtestout.txt");
+            DataInputStream dataInput = new DataInputStream(input);
+            int count = input.available();
+            byte[] byteArr = new byte[count];
+            dataInput.read(byteArr);
+            System.out.println("datainptstream values are...........");
+            for (byte b : byteArr) {
+                if (b != 0) {
+                    System.out.print(((char) b) + "-");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void filterOutputStream() {
+        try {
+            FileOutputStream file = new FileOutputStream("C:/Users/david/Downloads/filteroutputstreamtestout.txt");
+            FilterOutputStream filter = new FilterOutputStream(file);
+            String s = "Welcome to java filteroutputstream.";
+            byte b[] = s.getBytes();
+            filter.write(b);
+            filter.flush();
+            filter.close();
+            System.out.println("success....... filterOutputstream ...........");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void filterInputStream() {
+        try {
+            FileInputStream file = new FileInputStream("C:/Users/david/Downloads/filteroutputstreamtestout.txt");
+            FilterInputStream filter = new BufferedInputStream(file);
+            int k = 0;
+            System.out.println("data of filterinputstream.......");
+            while((k=filter.read())!=-1){  
+                System.out.print((char)k);  
+            }  
+            filter.close();
+    
+        } catch (Exception e) {
+            // TODO: handle exception
         }
     }
 
